@@ -1,0 +1,42 @@
+// Project-level build.gradle (android/build.gradle)
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// กำหนด build directory ใหม่ให้อยู่ที่ ../../build
+def newBuildDir = rootProject.layout.buildDirectory.dir("../../build").get()
+rootProject.layout.buildDirectory.set(newBuildDir)
+
+// ตั้งค่า build directory สำหรับ subprojects
+subprojects {
+    afterEvaluate { project ->
+        def newSubprojectBuildDir = newBuildDir.dir(project.name)
+        project.layout.buildDirectory.set(newSubprojectBuildDir)
+    }
+}
+
+// กำหนด dependency การประเมินผลสำหรับ :app
+subprojects {
+    evaluationDependsOn(":app")
+}
+
+// เพิ่ม task clean เพื่อลบ build directory
+tasks.register("clean", Delete) {
+    delete rootProject.layout.buildDirectory.get().asFile
+}
+
+// เพิ่มการตั้งค่าสำหรับ Firebase (ถ้าจำเป็น)
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.0' // ปรับตามเวอร์ชัน Flutter
+        classpath 'com.google.gms:google-services:4.4.0' // อัปเดตเวอร์ชันให้ใหม่ล่าสุด
+    }
+}

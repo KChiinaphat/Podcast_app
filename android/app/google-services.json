@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "158441232193",
+    "project_id": "chinnaphat-e2243",
+    "storage_bucket": "chinnaphat-e2243.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158441232193:android:11e4e46f4ea464feeaf3c0",
+        "android_client_info": {
+          "package_name": "com.example.podcast_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv8rf0-hS2uT9txkVjSz4JoRSiKW9Dvy8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

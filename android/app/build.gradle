@@ -1,0 +1,49 @@
+// android/app/build.gradle
+plugins {
+    id("com.android.application")
+    id("kotlin-android")
+    id("com.google.gms.google-services") // เพิ่มสำหรับ Firebase
+    id("dev.flutter.flutter-gradle-plugin") // ต้องอยู่หลัง Android และ Kotlin
+}
+
+android {
+    namespace = "com.example.podcast_app" // ปรับให้ตรงกับชื่อโปรเจค
+    compileSdk 34
+    ndkVersion "25.1.8937393"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+
+    defaultConfig {
+        applicationId "com.example.podcast_app"
+        minSdkVersion 21 // กำหนดค่าตัวเลขชัดเจน
+        targetSdkVersion 34 // ใช้ตัวเลขแทน
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+    release {
+        minifyEnabled false
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        signingConfig signingConfigs.debug
+    }
+}
+
+}
+
+flutter {
+    source = "../.." // ชี้ไปที่โฟลเดอร์ Flutter
+}
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    implementation 'com.google.firebase:firebase-auth' // Firebase Auth (เพิ่มถ้าต้องใช้)
+    implementation 'com.google.firebase:firebase-firestore' // Firestore
+}
